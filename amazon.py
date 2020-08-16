@@ -14,6 +14,10 @@ r = requests.get(url, headers= headers)
 soup = BeautifulSoup(r.content, features="lxml")
 
 image= []
+for img in img:
+    image.append(img['src'])
+
+
 title = soup.select("#title")[0].get_text().strip()
 price = soup.select("#priceblock_ourprice")[0].text.replace('\u20b9\u00a0','').strip()
 img = soup.select('img[src^="https://images-na.ssl-images-amazon.com/images/I"]')[:6]
@@ -22,9 +26,6 @@ review_count = int(soup.select("#acrCustomerReviewText")[0].get_text().split()[0
 feature =  soup.findAll(id="featurebullets_feature_div")[0].get_text()
 des =  soup.select("#productDescription")[0].text.replace('\n',' ')
 short = feature[4:120] 
-
-for img in img:
-    image.append(img['src'])
 
 
 
